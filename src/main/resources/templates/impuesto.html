@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cálculo de Impuesto</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="text-center">Cálculo de Impuesto</h2>
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/calcularimpuesto}" method="post" th:object="${productoModel}">
+                <div class="mb-3">
+                    <label class="form-label">Categoría:</label>
+                    <input type="text" th:field="*{categoria}" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Precio:</label>
+                    <input type="number" step="0.01" th:field="*{precio}" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Calcular</button>
+            </form>
+            <div th:if="${resultado}" class="alert alert-info mt-3">
+                <span th:text="${resultado}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
