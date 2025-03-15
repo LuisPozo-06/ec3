@@ -2,27 +2,48 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cálculo de Impuesto</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body>
-<div class="container mt-4">
-    <h2 class="text-center">Cálculo de Impuesto</h2>
-    <div class="card">
-        <div class="card-body">
-            <form th:action="@{/calcularimpuesto}" method="post" th:object="${productoModel}">
-                <div class="mb-3">
-                    <label class="form-label">Categoría:</label>
-                    <input type="text" th:field="*{categoria}" class="form-control" required>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3><i class="fas fa-calculator"></i> Cálculo de Impuesto</h3>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Precio:</label>
-                    <input type="number" step="0.01" th:field="*{precio}" class="form-control" required>
+                <div class="card-body">
+                    <form th:action="@{/calcularimpuesto}" method="post" th:object="${productoModel}">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Categoría:</label>
+                            <select th:field="*{categoria}" class="form-select" required>
+                                <option value="">Seleccione una categoría</option>
+                                <option value="Electrónica">Electrónica</option>
+                                <option value="Alimentos">Alimentos</option>
+                                <option value="Ropa">Ropa</option>
+                                <option value="Muebles">Muebles</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Precio:</label>
+                            <input type="number" step="0.01" th:field="*{precio}" class="form-control" required>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-check-circle"></i> Calcular
+                            </button>
+                        </div>
+                    </form>
+
+                    <div th:if="${resultado}" class="alert alert-info mt-3 text-center">
+                        <span th:text="${resultado}"></span>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Calcular</button>
-            </form>
-            <div th:if="${resultado}" class="alert alert-info mt-3">
-                <span th:text="${resultado}"></span>
             </div>
         </div>
     </div>

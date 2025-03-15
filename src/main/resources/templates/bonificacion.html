@@ -13,16 +13,18 @@
             <form th:action="@{/calcularbonificacion}" method="post" th:object="${ventaModel}">
                 <div class="mb-3">
                     <label class="form-label">Días para Pagar:</label>
-                    <input type="number" th:field="*{diasParaPagar}" class="form-control" required>
+                    <input type="number" th:field="*{diasParaPagar}" class="form-control" min="0" required>
+                    <div class="text-danger" th:if="${#fields.hasErrors('diasParaPagar')}" th:errors="*{diasParaPagar}"></div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Monto de Compra:</label>
-                    <input type="number" step="0.01" th:field="*{montoCompra}" class="form-control" required>
+                    <input type="number" step="0.01" th:field="*{montoCompra}" class="form-control" min="0" required>
+                    <div class="text-danger" th:if="${#fields.hasErrors('montoCompra')}" th:errors="*{montoCompra}"></div>
                 </div>
                 <button type="submit" class="btn btn-primary">Calcular</button>
             </form>
             <div th:if="${resultado}" class="alert alert-info mt-3">
-                <span th:text="${resultado}"></span>
+                <strong>Resultado:</strong> <span th:text="${resultado}"></span>
             </div>
         </div>
     </div>
