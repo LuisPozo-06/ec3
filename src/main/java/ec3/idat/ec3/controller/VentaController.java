@@ -20,8 +20,14 @@ public class VentaController {
     public String calcularBonificacion(@ModelAttribute("ventaModel") VentaModel venta, Model model) {
         Integer dias = venta.getDiasParaPagar();
         Double monto = venta.getMontoCompra();
-        Double descuento = (dias < 7) ? 0.10 :
-                (dias <= 15) ? 0.05 : 0;
+        Double descuento = 0.0;
+
+        if (dias < 7) {
+            descuento = 0.10;
+        } else if (dias <= 15) {
+            descuento = 0.05;
+        }
+
         Double total = monto * (1 - descuento);
 
         model.addAttribute("resultado", "Total con bonificación: $" + total);
