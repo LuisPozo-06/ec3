@@ -9,5 +9,4 @@ public class Ec3Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Ec3Application.class, args);
 	}
-
 }
