@@ -1,6 +1,6 @@
 package ec3.idat.ec3.model;
 
-public class VendendorModel {
+public class VendedorModel {
     private Double ventasMensuales;
 
     public Double getVentasMensuales() {
